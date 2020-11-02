@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Input",
+  "description": "schema for input.json",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["site", "units", "bids"],
+    "additionalProperties": false,
+    "properties": {
+      "site": {
+        "type": "string"
+      },
+      "units": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "bids": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "required": ["bidder", "unit", "bid"],
+            "properties": {
+              "bidder": {
+                "type": "string"
+              },
+              "unit": {
+                "type": "string"
+              },
+              "bid": {
+                "type": "number"
+              }
+            }
+        }
+      }
+    }
+  }
+}

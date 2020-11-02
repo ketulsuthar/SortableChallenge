@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Config",
+  "description": "schema for config.json",
+  "type": "object",
+  "required": ["sites", "bidders"],
+  "additionalProperties": false,
+  "properties": {
+    "sites": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "bidders", "floor"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "bidders": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "floor": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "bidders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "adjustment"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "adjustment": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

@@ -129,3 +129,18 @@ def initialise_units(ad_units):
         b[ad]
 
     return b
+
+
+def validate_bidder(bidder, sites_bidders, adj_bidders):
+    """"This function validate bidder
+    :param adj_bidders:
+    :param sites_bidders:
+    :type bidder: object
+    :return: bool
+    """
+    if bidder and sites_bidders and adj_bidders:
+        if bidder not in sites_bidders or bidder not in adj_bidders:
+            return False
+        else:
+            return True
+    return False

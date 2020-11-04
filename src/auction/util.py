@@ -162,3 +162,19 @@ def validate_bid(bid, ad_unit, ad_floor):
         return False
 
     return True
+
+
+def calculated_bid(bid_val, adjustment_val):
+    """
+    This function calculate new bid
+    :type bid_val: object
+    :param bid_val:
+    :param adjustment_val:
+    :return: new bid val
+    """
+    if bid_val <= 0:
+        return 0
+
+    bid_adjust = bid_val * abs(adjustment_val)
+
+    return bid_val - bid_adjust if adjustment_val < 0 else bid_val + bid_adjust

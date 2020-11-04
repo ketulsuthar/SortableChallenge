@@ -144,3 +144,21 @@ def validate_bidder(bidder, sites_bidders, adj_bidders):
         else:
             return True
     return False
+
+
+def validate_bid(bid, ad_unit, ad_floor):
+    """This function validate bid value
+    :param ad_floor:
+    :param ad_unit:
+    :type bid: object
+    """
+    if not bid or not ad_unit or not ad_floor:
+        return False
+
+    if bid['unit'] not in ad_unit:
+        return False
+
+    if bid['adjusted_bid'] < ad_floor:
+        return False
+
+    return True

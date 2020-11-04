@@ -6,6 +6,7 @@ import sys
 import json
 import jsonschema
 from jsonschema import validate
+from collections import defaultdict
 from SortableChallenge.src.auction.settings import CONFIG_FILE_PATH, SCHEMA_CONFIG_PATH, SCHEMA_INPUT_PATH
 
 
@@ -113,3 +114,18 @@ def get_input():
         return json.loads(''.join(sys.stdin.readlines()))
     except:
         return None
+
+
+def initialise_units(ad_units):
+    """this funtion initialize dict with unit.
+    :type ad_units: object
+    """
+    if not ad_units:
+        return None
+
+    b = defaultdict(list)
+
+    for ad in ad_units:
+        b[ad]
+
+    return b

@@ -178,3 +178,24 @@ def calculated_bid(bid_val, adjustment_val):
     bid_adjust = bid_val * abs(adjustment_val)
 
     return bid_val - bid_adjust if adjustment_val < 0 else bid_val + bid_adjust
+
+
+def get_auction_results(bids):
+    """
+    This fuction return winning bid
+    :param bids:
+    :return:
+    """
+    result = []
+    if not bool(bids):
+        return result
+
+    for bid in bids.values():
+        if not len(bid):
+            continue
+
+        win_bid = get_winning_bid(bid)
+        delete_adjusted_bid(win_bid)
+        result.append(win_bid)
+
+    return result

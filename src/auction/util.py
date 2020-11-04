@@ -16,7 +16,7 @@ def read_file(type):
     :return:
     """
     try:
-        file_name =''
+        file_name = ''
         if type.upper() == "CONFIG":
             file_name = CONFIG_FILE_PATH
         elif type.upper() == "SCHEMA_CONFIG":
@@ -24,15 +24,14 @@ def read_file(type):
         elif type.upper() == "SCHEMA_INPUT":
             file_name = SCHEMA_INPUT_PATH
 
-
-        print(file_name)
         if file_name:
-            with open(file_name,'r') as f:
+            with open(file_name, 'r') as f:
                 return json.load(f)
         else:
             print(f"Error : Check config file path. [load_configuration]")
     except Exception as err:
         print(f"Error : {err} [read_file]")
+
 
 def load_configuration():
     """
@@ -40,6 +39,7 @@ def load_configuration():
     :return:
     """
     return read_file('CONFIG')
+
 
 def is_valid_config(sites_bidders):
     """
@@ -57,6 +57,7 @@ def is_valid_config(sites_bidders):
     else:
         return True
 
+
 def is_valid_input(auctions):
     """
 
@@ -64,6 +65,7 @@ def is_valid_input(auctions):
     :return:
     """
     input_schema = read_file('SCHEMA_INPUT')
+
     try:
         validate(auctions, input_schema)
     except jsonschema.exceptions.ValidationError as err:
@@ -77,13 +79,13 @@ def get_sites(sites_bidders):
     """
     This function extract sites
     :param sites_bidders:
-    :return:
+    :return: dict
     """
-    sites= {}
+    sites = {}
     for site in sites_bidders:
         sites[site['name']] = {
-            'bidders' : site['bidders'],
-            'floor' : site['floor']
+            'bidders': site['bidders'],
+            'floor': site['floor']
         }
     return sites
 
@@ -92,19 +94,22 @@ def get_bidders(sites_bidders):
     """
     This function extract sites
     :param sites_bidders:
-    :return:
+    :return: dict
     """
     bidders = {}
     for bidder in sites_bidders:
         bidders[bidder['name']] = {
-            'adjustment' : bidder['adjustment']
+            'adjustment': bidder['adjustment']
         }
     return bidders
 
 
 def get_input():
     """
-
-    :return:
+    This fucntion return user input in json format
+    :return: list or None
     """
-    return json.loads(''.join(sys.stdin.readlines()))
+    try:
+        return json.loads(''.join(sys.stdin.readlines()))
+    except:
+        return None

@@ -212,3 +212,13 @@ def get_winning_bid(bids):
         return {}
 
     return max(bids, key=itemgetter('adjusted_bid'))
+
+
+def delete_adjusted_bid(win_bid):
+    """
+    This fucnton delete adjusted val
+    :param win_bid:
+    :return:
+    """
+    del win_bid['adjusted_bid']
+    return win_bid

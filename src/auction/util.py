@@ -7,6 +7,7 @@ import json
 import jsonschema
 from jsonschema import validate
 from collections import defaultdict
+from operator import itemgetter
 from SortableChallenge.src.auction.settings import CONFIG_FILE_PATH, SCHEMA_CONFIG_PATH, SCHEMA_INPUT_PATH
 
 
@@ -199,3 +200,15 @@ def get_auction_results(bids):
         result.append(win_bid)
 
     return result
+
+
+def get_winning_bid(bids):
+    """
+    This function return winner bid
+    :param bids:
+    :return:
+    """
+    if not bids:
+        return {}
+
+    return max(bids, key=itemgetter('adjusted_bid'))

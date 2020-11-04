@@ -14,9 +14,14 @@ if __name__ == "__main__":
         bidders = get_bidders(sites_bidders.get('bidders',[]))
 
         auctions = get_input()
-        print(auctions)
+
         if is_valid_input(auctions):
             for auction in auctions:
-                print(auction)
-
+                site_auction = sites.get(auction['site'],None)
+                if site_auction:
+                    ad_unit = auction['units']
+                else:
+                    print(f"{auction['site']} does not exist in configuration.")
+        else:
+            print(f"Invalid Auction : {auctions}")
 

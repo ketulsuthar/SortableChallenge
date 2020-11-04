@@ -222,3 +222,12 @@ def delete_adjusted_bid(win_bid):
     """
     del win_bid['adjusted_bid']
     return win_bid
+
+
+def display_results(bid_units):
+    """
+    This fucntion displau result
+    :param bid_units:
+    :return:
+    """
+    print(json.dumps(bid_units, indent=4, sort_keys=True))

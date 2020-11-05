@@ -58,6 +58,24 @@ def is_valid_config(sites_bidders):
         return True
 
 
+def is_valid_auction(auction, sites):
+    """
+    This function validate AUCTION
+    :param auction
+    :param sites
+    :return bool
+    """
+    if not bool(auction) or not bool(sites):
+        return False
+
+    if not len(auction['bids']):
+        return False
+
+    if auction['site'] not in sites.keys():
+        return False
+
+    return True
+
 def is_valid_input(auctions):
     """
 

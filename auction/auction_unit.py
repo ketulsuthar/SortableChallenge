@@ -1,5 +1,5 @@
 import unittest
-from auction.src.util import get_auction_results, is_valid_auction
+from src.utils.util import get_auction_results, is_valid_auction
 
 mock_sites_dict = {'houseofcheese.com': {'bidders': ['AUCT', 'BIDD'], 'floor': 32}}
 
@@ -9,9 +9,9 @@ mock_auction = {'site': 'houseofcheese.com', 'units': ['banner', 'sidebar'], 'bi
 
 mock_no_bids_for_ad_unit = {'banner': []}
 
-winning_bid_banner = {'bidder': 'AUCT', 'unit': 'banner', 'bid': 35, 'adjusted_bid_value': 32.8125}
-winning_bid_sidebar = {'bidder': 'BIDD', 'unit': 'sidebar', 'bid': 60, 'adjusted_bid_value': 60}
-losing_bid_sidebar = {'bidder': 'AUCT', 'unit': 'sidebar', 'bid': 55, 'adjusted_bid_value': 51.5625}
+winning_bid_banner = {'bidder': 'AUCT', 'unit': 'banner', 'bid': 35, 'adjusted_bid': 32.8125}
+winning_bid_sidebar = {'bidder': 'BIDD', 'unit': 'sidebar', 'bid': 60, 'adjusted_bid': 60}
+losing_bid_sidebar = {'bidder': 'AUCT', 'unit': 'sidebar', 'bid': 55, 'adjusted_bid': 51.5625}
 mock_bids = {'banner': [winning_bid_banner], 'sidebar': [winning_bid_sidebar, losing_bid_sidebar]}
 expected_result = [{'bid': 35, 'bidder': 'AUCT', 'unit': 'banner'}, {'bid': 60, 'bidder': 'BIDD', 'unit': 'sidebar'}]
 

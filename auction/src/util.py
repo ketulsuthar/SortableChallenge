@@ -8,7 +8,7 @@ import jsonschema
 from jsonschema import validate
 from collections import defaultdict
 from operator import itemgetter
-from SortableChallenge.src.auction.settings import CONFIG_FILE_PATH, SCHEMA_CONFIG_PATH, SCHEMA_INPUT_PATH
+from src.settings import CONFIG_FILE_PATH, SCHEMA_CONFIG_PATH, SCHEMA_INPUT_PATH
 
 
 def read_file(type):
@@ -27,12 +27,11 @@ def read_file(type):
             file_name = SCHEMA_INPUT_PATH
 
         if file_name:
-            with open(file_name, 'r') as f:
+            with open(str(file_name), 'r') as f:
                 return json.load(f)
-        else:
-            print(f"Error : Check config file path. [load_configuration]")
+       
     except Exception as err:
-        print(f"Error : {err} [read_file]")
+        print(err)
 
 
 def load_configuration():
@@ -54,7 +53,6 @@ def is_valid_config(sites_bidders):
     try:
         validate(sites_bidders, config_schema)
     except jsonschema.exceptions.ValidationError as err:
-        print(f"Error : {err} [is_valid_config]")
         return False
     else:
         return True
@@ -69,9 +67,10 @@ def is_valid_input(auctions):
     input_schema = read_file('SCHEMA_INPUT')
 
     try:
+        
         validate(auctions, input_schema)
     except jsonschema.exceptions.ValidationError as err:
-        print(f"Error : {err} [is_valid_input]")
+        
         return False
     else:
         return True
@@ -113,7 +112,7 @@ def get_input():
     """
     try:
         return json.loads(''.join(sys.stdin.readlines()))
-    except:
+    except Exception as e:
         return None
 
 

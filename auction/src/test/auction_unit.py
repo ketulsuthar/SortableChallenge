@@ -1,7 +1,5 @@
 import unittest
-
-from SortableChallenge.src.auction.util import is_valid_auction
-from SortableChallenge.src.auction.util import get_auction_results
+from auction.src.util import get_auction_results, is_valid_auction
 
 mock_sites_dict = {'houseofcheese.com': {'bidders': ['AUCT', 'BIDD'], 'floor': 32}}
 

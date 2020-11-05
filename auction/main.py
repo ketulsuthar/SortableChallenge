@@ -2,7 +2,7 @@
 create_by : Ketulkumar Suthar
 created_date : 1st November 2020
 """
-from SortableChallenge.src.auction.util import load_configuration, get_bidders, get_sites, is_valid_config, get_input,is_valid_input, initialise_units, validate_bid, validate_bidder, get_auction_results, display_results, calculated_bid
+from src.util import load_configuration, get_bidders, get_sites, is_valid_config, get_input,is_valid_input, initialise_units, validate_bid, validate_bidder, get_auction_results, display_results, calculated_bid
 
 if __name__ == "__main__":
     # load config file
@@ -35,9 +35,9 @@ if __name__ == "__main__":
                                 bid_units[bid['unit']].append(bid)
 
                     result.append(get_auction_results(bid_units))
-                else:
-                    print(f"{auction['site']} does not exist in configuration.")
+                
         else:
-            print(f"Invalid Auction : {auctions}")
+            #print(f"Invalid Auction : {auctions}")
+            pass
 
     display_results(result)
